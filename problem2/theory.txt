@@ -1,0 +1,56 @@
+  The objective in this problem was to calculate the sum of all even fibonacci
+numbers less than or equal to 4,000,000. This solution uses a simple mathe-
+matical idea to simplify the problem, and solve it without ever having to check
+if a number was even or odd.
+  To keep things simple, we'll define the fibonacci sequence as follows.
+	fib(1) = 1
+	fib(2) = 1
+	fib(n) = fib(n-1) + fib(n-2)
+  The mathematical concept is as follows:
+	Every third fibonacci number is even. All other terms are odd.
+
+  Certainly, knowing this simplifies the problem significantly, as rather than
+calculating every fibonacci number and checking every number for divisibility
+by two (or bitwise AND with 1, or however you prefer to check even/odd). But,
+as Project Euler is as much about programming as it is about math, let's prove
+this, for fun.
+
+Let the fibonacci sequence be defined as follows:
+fib(1) = 1
+fib(2) = 1
+fib(n) = fib(n-1) + fib(n-2)
+Theorem: fib(n) is even if and only if n is divisible by 3.
+
+Proof: (by mathematical induction)
+
+Basis:
+1 is not divisible by 3, fib(1) = 1, and 1 is not even.
+2 is not divisible by 3, fib(2) = 1, and 1 is not even.
+3 is divisible by 3, fib(3) = 2, and 2 is even.
+
+Induction hypothesis:
+For all n < k, assume fib(n) is even if and only if h is divisible by 3.
+
+For any integer k, exactly one of k-1, k, and k+1 is divisible by 3.
+
+(prove that k is divisible by 3 => fib(k) is even)
+In the case that k+1 is divisible by 3:
+	k-1 is not evenly divisible by 3.
+	k is not evenly divisible by 3.
+	By the induction hypothesis, fib(k-1) and fib(k) are both odd.
+	Therefore, fib(k+1) = fib(k) + fib(k-1) is even.
+
+(prove that k is not divisible by 3 => fib(k) is not even)
+In the case that k is divisible by 3:
+	k-1 is not evenly divisible by 3.
+	k+1 is not evenly divisible by 3.
+	By the induction hypothesis, fib(k-1) is odd and fib(k) is even.
+	Therefore, fib(k+1) = fib(k) + fib(k-1) is odd.
+
+In the case that k-1 is divisible by 3:
+	k is not evenly divisible by 3.
+	k+1 is not evenly divisible by 3.
+	By the induction hypothesis, fib(k-1) is even and fib(k) is odd.
+	Therefore, fib(k+1) = fib(k) + fib(k+1) is odd.
+
+Therefore, k is divisible by 3 <==> fib(k) is even.
