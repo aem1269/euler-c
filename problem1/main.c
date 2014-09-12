@@ -10,6 +10,7 @@
 #define LOWER_LIMIT (0)
 
 const int FACTORS[] = {3, 5};
+const int NUM_FACTORS = sizeof(FACTORS) / sizeof(FACTORS[0]);
 
 /*
  * Determine if a value is evenly divisible by any numbers in an
@@ -25,11 +26,10 @@ const int FACTORS[] = {3, 5};
  * 	value if the value is divisible by any factors
  */
 int isDivisibleByAny(const int factors[], int value) {
-	int length = sizeof(factors);
 	int factor;
 	int i;
 
-	for (i=0; i < length; i++) {
+	for (i=0; i < NUM_FACTORS; i++) {
 		factor = factors[i];
 		/* if value % i == 0, return that value. */
 		if (!(value % factor)) {
