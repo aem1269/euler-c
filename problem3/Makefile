@@ -1,12 +1,12 @@
 CC=gcc
-CFLAGS=-std=c99
+CFLAGS=-std=c99 -O2
 BDIR=bin
 ODIR=obj
 build_obj_folder := $(shell mkdir -p $(ODIR))
 build_bin_folder := $(shell mkdir -p $(BDIR))
 
 
-euler3: $(ODIR)/main.o
+$(BDIR)/euler3: $(ODIR)/main.o
 	$(CC) -o $(BDIR)/euler3 $(ODIR)/main.o
 
 
