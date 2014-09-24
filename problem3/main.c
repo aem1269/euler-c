@@ -4,10 +4,9 @@
  * https://projecteuler.net/problem=3
  * What is the largest prime factor of the number 600851475143
  *
- * NOTE: This program must be compiled with C99
+ * NOTE: This program must be compiled with C99 for 64-bit integer support
  */
 # define NUMBER (600851475143)
-# define NUMBITS = (sizeof long * CHAR_BIT)
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -54,16 +53,15 @@ bool* getPrimes(int upperLimit) {
 	for (i = 0; i < upperLimit; i++) {
 		prime[i] = true;
 	}
-	for (i = 2; i < 880; i++) {
+	for (i = 2; i < innerLimit; i++) {
 		/* If i isn't prime, we don't need to worry about it */
 		/* as all its multiples have already been removed.   */
 		if (!prime[i]) {
 			continue;
 		}
-		marker=i * i;
-		while (marker < upperLimit) {
+		/* mark off composite numbers */
+		for (marker=i*i; marker < upperLimit; marker+=i) {
 			prime[marker] = false;
-			marker += i;
 		}
 	}
 	return prime;
