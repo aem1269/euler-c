@@ -8,10 +8,26 @@
  */
 # define NUMBER (600851475143)
 # define NUMBITS = (sizeof long * CHAR_BIT)
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <inttypes.h>
 # include <stdbool.h>
+
+/*
+ * Gets the highest possible factor of a number (sqrt, rounded down)
+ * Parameter: num
+ * 	The number to check for the highest possible factor
+ *
+ * Returns:
+ * 	The highest number that can possibly be a factor of num
+ * 	I.E. floor(sqrt(num))
+ */
+int highestPossibleFactor(uint64_t num) {
+	double value = (double) num;
+	double root = sqrt(num);
+	return (int) root;
+}
 
 /*
  * Uses the Sieve of Eratosthenes to create a boolean array, where
@@ -24,9 +40,16 @@
  * 	of their indeces.
  */
 bool* getPrimes(int upperLimit) {
+	/* array indicating primeness of integers */
 	bool* prime = (bool*) malloc(upperLimit * sizeof(bool));
+
+	/* upper limit of numbers to mark factors of */
+	int innerLimit = highestPossibleFactor(upperLimit);
+
+	/* marks composite values 'false' */
+	int marker;
+
 	int i;
-	int test;
 	/* Initialize prime to all true */
 	for (i = 0; i < upperLimit; i++) {
 		prime[i] = true;
@@ -37,28 +60,14 @@ bool* getPrimes(int upperLimit) {
 		if (!prime[i]) {
 			continue;
 		}
-		test=i * i;
-		while (test < upperLimit) {
-			prime[test] = false;
-			test += i;
+		marker=i * i;
+		while (marker < upperLimit) {
+			prime[marker] = false;
+			marker += i;
 		}
 	}
 	return prime;
 
-}
-
-/*
- * Gets the highest possible factor of a number (sqrt, rounded down)
- * Parameter: num
- * 	The number to check for the highest possible factor
- *
- * Returns:
- * 	The highest number that can possibly be a factor of num
- * 	I.E. floor(sqrt(num))
- */
-int highestPossibleFactor(uint64_t num) {
-	/* TODO calculation here */
-	return 775146;
 }
 
 /*
