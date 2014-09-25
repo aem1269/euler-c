@@ -24,7 +24,7 @@ int isPalindrome(int num) {
 
 	/* move to the last character */
 	while (!(*(--back)));
-	while (*front) {
+	while (front < back) {
 		if (*(front++) != *(back--)) {
 			return 0;
 		}
@@ -33,10 +33,39 @@ int isPalindrome(int num) {
 }
 
 /*
+ * Finds the highest palindrome that is the product of two 3-digit numbers
+ *
+ * Returns: Highest palindrome that is the product of two 3-digit numbers.
+ */
+int findHighestValidPalindrome() {
+	int a, b, prod;
+	int highest = 0;
+	for (a = 999; a >= 100; a--) {
+		for (b = a; b >= 100; b--) {
+			/* prod is decreasing in this loop, so once it's   */
+			/* less than the highest prime, we can stop caring */
+			/* and break out of this loop.                     */
+			prod = a * b;
+			if (prod < highest) {
+				if (a == b) return highest;
+				else break;
+			}
+			if (isPalindrome(prod)) {
+				highest = prod;
+				break;
+			}
+
+		}
+	}
+	return highest;
+}
+
+/*
  * Finds the largest such palindrome and exits successfully
  */
 int main() {
-	int palindrome = 0;
+	int palindrome = findHighestValidPalindrome();
 	printf("Largest palindrome found: %d\n", palindrome);
 	exit(EXIT_SUCCESS);
 }
+
