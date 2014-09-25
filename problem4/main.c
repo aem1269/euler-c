@@ -30,8 +30,6 @@ int isPalindrome(int num) {
 		}
 	}
 	return 1;
-
-
 }
 
 /*
