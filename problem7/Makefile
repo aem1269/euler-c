@@ -5,8 +5,8 @@ build_obj_folder := $(shell mkdir -p $(ODIR))
 build_bin_folder := $(shell mkdir -p $(BDIR))
 
 
-$(BDIR)/euler7: $(ODIR)/main.o
-	$(CC) -o $(BDIR)/euler7 $(ODIR)/main.o $(CFLAGS)
+$(BDIR)/euler7: $(ODIR)/main.o $(ODIR)/prime.o
+	$(CC) -o $(BDIR)/euler7 $(ODIR)/prime.o $(ODIR)/main.o $(CFLAGS)
 
 
 $(ODIR)/%.o: %.c

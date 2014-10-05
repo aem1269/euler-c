@@ -2,3 +2,5 @@
 *.out
 obj/
 bin/
+Template
+setup.sh
