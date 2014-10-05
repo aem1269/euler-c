@@ -43,7 +43,7 @@ int getPrime(int n) {
 		}
 	}
 	free(primes);
-	return i;
+	return i-2;
 
 }
 
