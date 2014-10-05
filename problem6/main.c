@@ -56,8 +56,9 @@ int getSquareSum(int start, int end) {
 	int i;
 	if (start == 1) {
 		o = 1;
-	} else {
-		o = ((start + 1) * (start + 1)) - (start * start);
+	} else { /* set it up like we were at the square before this */
+		square = (start - 1) * (start - 1);
+		o = start * start - square;
 	}
 	for (i=0; i<=(end - start); i++) {
 		square += o;
