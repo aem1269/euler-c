@@ -51,10 +51,20 @@ int getSumSquared(int start, int end) {
  */
 int getSquareSum(int start, int end) {
 	int sum = 0;
-	int i; /* iterates from 'start' to 'end' */
-	for (i=start; i<=end; i++) {
-		sum += i * i;
+	int square = 0;
+	int o; /* goes through a bunch of odd numbers */
+	int i;
+	if (start == 1) {
+		o = 1;
+	} else {
+		o = ((start + 1) * (start + 1)) - (start * start);
 	}
+	for (i=0; i<=(end - start); i++) {
+		square += o;
+		sum += square;
+		o += 2;
+	}
+
 	return sum;
 }
 
